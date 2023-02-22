@@ -16,9 +16,13 @@ import (
 func main() {
 	logrus.SetLevel(logrus.DebugLevel)
 	logrus.SetReportCaller(true)
+	logrus.Info("Starting deluge-exporter...")
 
 	http.HandleFunc("/metrics", metricsHandler)
-	http.ListenAndServe(":2112", nil)
+	err := http.ListenAndServe(":8632", nil)
+	if err != nil {
+		logrus.Fatal(err)
+	}
 
 }
 

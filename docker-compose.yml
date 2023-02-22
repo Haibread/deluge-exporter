@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  godisco:
+    build: .
+    container_name: "deluge-exporter"
+    volumes:
+      - ./config.yml:/app/config.yml
+    ports:
+      - 8632:8632
+    restart: unless-stopped
